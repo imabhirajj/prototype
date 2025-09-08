@@ -37,7 +37,7 @@ const Navbar = () => {
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className={`flex items-center justify-between transition-all duration-300 ${scrolled ? 'h-14' : 'h-16'}`}>
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 group">
             <motion.div
@@ -56,7 +56,7 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:block">
-            <div className="flex items-center space-x-1">
+            <div className={`flex items-center ${scrolled ? 'space-x-0.5' : 'space-x-1'}`}>
               {navLinks.map((link) => (
                 <motion.div
                   key={link.to}
@@ -66,7 +66,7 @@ const Navbar = () => {
                 >
                   <Link
                     to={link.to}
-                    className={`relative px-4 py-2 text-sm font-medium transition-colors rounded-lg ${
+                    className={`relative ${scrolled ? 'px-3 py-1.5' : 'px-4 py-2'} text-sm font-medium transition-colors rounded-lg ${
                       location.pathname === link.to 
                         ? 'text-blue-600' 
                         : 'text-gray-700 hover:text-blue-600'
@@ -106,6 +106,11 @@ const Navbar = () => {
                 className="ml-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2 rounded-lg text-sm font-medium relative overflow-hidden group"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
+                onClick={() => {
+                  const event = new CustomEvent('open-guided-demo');
+                  window.dispatchEvent(event);
+                }}
+                aria-label="Start guided demo"
               >
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600"
@@ -113,7 +118,7 @@ const Navbar = () => {
                   whileHover={{ x: '0%' }}
                   transition={{ duration: 0.3 }}
                 />
-                <span className="relative z-10">Request Demo</span>
+                <span className="relative z-10">Start Demo</span>
                 
                 {/* Shine Effect */}
                 <motion.div
@@ -197,8 +202,13 @@ const Navbar = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: navLinks.length * 0.1 }}
                   whileTap={{ scale: 0.98 }}
+                  onClick={() => {
+                    const event = new CustomEvent('open-guided-demo');
+                    window.dispatchEvent(event);
+                    setIsOpen(false);
+                  }}
                 >
-                  Request Demo
+                  Start Demo
                 </motion.button>
               </div>
             </motion.div>

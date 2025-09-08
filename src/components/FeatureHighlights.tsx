@@ -91,7 +91,7 @@ const FeatureHighlights = () => {
           transition={{ duration: 0.8 }}
         >
           <motion.h2 
-            className="text-5xl font-bold text-gray-900 mb-6"
+            className="text-3xl sm:text-5xl font-bold text-gray-900 mb-6"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={inView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -99,7 +99,7 @@ const FeatureHighlights = () => {
             Core Capabilities
           </motion.h2>
           <motion.p 
-            className="text-xl text-gray-600 max-w-3xl mx-auto"
+            className="text-base sm:text-xl text-gray-600 max-w-3xl mx-auto"
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -115,11 +115,11 @@ const FeatureHighlights = () => {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.6 }}
         >
-          <div className="flex bg-white rounded-2xl p-2 shadow-lg border border-gray-100">
+          <div className="flex flex-col sm:flex-row bg-white rounded-2xl p-2 shadow-lg border border-gray-100 gap-2 sm:gap-0 w-full max-w-xl">
             {highlights.map((highlight, index) => (
               <motion.button
                 key={index}
-                className={`relative overflow-hidden flex items-center space-x-3 px-6 py-3 rounded-xl font-semibold transition-all ${
+                className={`relative overflow-hidden flex items-center space-x-3 px-4 sm:px-6 py-3 rounded-xl font-semibold transition-all w-full sm:w-auto ${
                   activeTab === index 
                     ? 'text-white shadow-lg' 
                     : 'text-gray-600 hover:text-gray-900'
@@ -135,7 +135,7 @@ const FeatureHighlights = () => {
                   />
                 )}
                 <highlight.icon className="w-5 h-5 relative z-10" />
-                <span className="relative z-10">{highlight.title}</span>
+                <span className="relative z-10 text-sm sm:text-base">{highlight.title}</span>
 
                 
               </motion.button>
@@ -147,7 +147,7 @@ const FeatureHighlights = () => {
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -156,33 +156,11 @@ const FeatureHighlights = () => {
             {highlights[activeTab].features.map((feature, index) => (
               <motion.div
                 key={index}
-                className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 group cursor-pointer overflow-hidden relative"
+                className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 relative"
                 initial={{ opacity: 0, y: 30, scale: 0.9 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ 
-                  y: -5,
-                  scale: 1.02,
-                  boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)'
-                }}
               >
-                {/* Hover Background Effect */}
-                <motion.div
-                  className={`absolute inset-0 bg-gradient-to-br ${highlights[activeTab].bgGradient} opacity-0`}
-                  whileHover={{ opacity: 0.5 }}
-                  transition={{ duration: 0.3 }}
-                />
-
-                {/* Animated Border */}
-                <motion.div
-                  className={`absolute inset-0 border-2 border-transparent bg-gradient-to-r ${highlights[activeTab].color} rounded-2xl opacity-0`}
-                  whileHover={{ opacity: 1 }}
-                  transition={{ duration: 0.3 }}
-                  style={{ 
-                    background: `linear-gradient(white, white) padding-box, linear-gradient(45deg, transparent, ${highlights[activeTab].color}) border-box`,
-                    backgroundClip: 'padding-box, border-box'
-                  }}
-                />
 
                 <div className="relative z-10">
                   <motion.div
@@ -206,8 +184,7 @@ const FeatureHighlights = () => {
                   </motion.div>
 
                   <motion.h3 
-                    className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-600"
-                    transition={{ duration: 0.2 }}
+                    className="text-lg font-bold text-gray-900 mb-2"
                   >
                     {feature.title}
                   </motion.h3>
@@ -220,31 +197,13 @@ const FeatureHighlights = () => {
                     {feature.desc}
                   </motion.p>
 
-                  {/* Arrow Indicator */}
-                  <motion.div
-                    className="mt-4 flex items-center text-blue-600 opacity-0 group-hover:opacity-100"
-                    initial={{ x: -10 }}
-                    whileHover={{ x: 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
+                  {/* Arrow Indicator removed hover reveal */}
+                  <div className="mt-4 flex items-center text-blue-600">
                     <span className="text-sm font-medium mr-1">Learn more</span>
                     <ChevronRight className="w-4 h-4" />
-                  </motion.div>
+                  </div>
                 </div>
-
-                {/* Sparkle Effect */}
-                <motion.div
-                  className="absolute top-2 right-2 w-2 h-2 bg-yellow-400 rounded-full opacity-0"
-                  animate={{
-                    opacity: [0, 1, 0],
-                    scale: [0, 1, 0],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    delay: Math.random() * 2
-                  }}
-                />
+                
               </motion.div>
             ))}
           </motion.div>

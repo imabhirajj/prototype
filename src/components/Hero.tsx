@@ -13,7 +13,7 @@ const Hero = () => {
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20 overflow-visible">
+    <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 overflow-visible">
       {/* Animated Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
         <motion.div
@@ -25,31 +25,33 @@ const Hero = () => {
               'radial-gradient(circle at 40% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)'
             ]
           }}
-          transition={{ duration: 8, repeat: Infinity, repeatType: 'reverse' }}
+          transition={{ duration: 12, repeat: Infinity, repeatType: 'reverse' }}
         />
       </div>
 
-      {/* Floating Particles */}
-      {Array.from({ length: 20 }).map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-2 h-2 bg-blue-400 rounded-full opacity-20"
-          animate={{
-            y: [0, -100, 0],
-            x: [0, Math.random() * 100 - 50, 0],
-            scale: [1, 1.5, 1],
-          }}
-          transition={{
-            duration: 3 + Math.random() * 2,
-            repeat: Infinity,
-            delay: Math.random() * 2,
-          }}
-          style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-          }}
-        />
-      ))}
+      {/* Floating Particles (hidden on small screens for performance) */}
+      <div className="hidden sm:block">
+        {Array.from({ length: 20 }).map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-2 h-2 bg-blue-400 rounded-full opacity-20"
+            animate={{
+              y: [0, -100, 0],
+              x: [0, Math.random() * 100 - 50, 0],
+              scale: [1, 1.5, 1],
+            }}
+            transition={{
+              duration: 3 + Math.random() * 2,
+              repeat: Infinity,
+              delay: Math.random() * 2,
+            }}
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+          />
+        ))}
+      </div>
 
       <div className="max-w-7xl mx-auto text-center relative z-10 w-full">
         {/* Floating Icons */}
@@ -67,8 +69,8 @@ const Hero = () => {
             transition={{ 
               delay: delay + 1,
               duration: 0.8,
-              y: { duration: 3, repeat: Infinity },
-              rotate: { duration: 4, repeat: Infinity }
+              y: { duration: 5, repeat: Infinity },
+              rotate: { duration: 6, repeat: Infinity }
             }}
             style={{ left: `calc(50% + ${x}px)`, top: `calc(50% + ${y}px)` }}
           >
@@ -78,7 +80,7 @@ const Hero = () => {
 
         {/* Main Heading with Typewriter Effect */}
         <motion.div
-          className="space-y-6"
+          className="space-y-5 sm:space-y-6"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -163,6 +165,10 @@ const Hero = () => {
                 boxShadow: '0 10px 25px rgba(59, 130, 246, 0.2)'
               }}
               whileTap={{ scale: 0.98 }}
+              onClick={() => {
+                const event = new CustomEvent('open-transformation-showcase');
+                window.dispatchEvent(event);
+              }}
             >
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl"
