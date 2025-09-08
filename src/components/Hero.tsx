@@ -1,18 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Play, Sparkles, Users, TrendingUp, Globe } from 'lucide-react';
 
 const Hero = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
 
   const floatingIcons = [
     { Icon: Users, delay: 0, x: 100, y: 50 },
@@ -22,7 +13,7 @@ const Hero = () => {
   ];
 
   return (
-    <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20 overflow-visible">
       {/* Animated Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
         <motion.div
@@ -60,7 +51,7 @@ const Hero = () => {
         />
       ))}
 
-      <div className="max-w-7xl mx-auto text-center relative z-10">
+      <div className="max-w-7xl mx-auto text-center relative z-10 w-full">
         {/* Floating Icons */}
         {floatingIcons.map(({ Icon, delay, x, y }, index) => (
           <motion.div
@@ -87,19 +78,20 @@ const Hero = () => {
 
         {/* Main Heading with Typewriter Effect */}
         <motion.div
+          className="space-y-6"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
           <motion.h1 
-            className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight mb-8"
+            className="text-3xl sm:text-5xl lg:text-7xl font-bold text-gray-900 leading-[1.25] sm:leading-[1.2] lg:leading-[1.15] overflow-visible"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.3 }}
           >
             Connecting Alumni,
             <motion.span 
-              className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 block"
+              className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 block pb-2"
               animate={{ 
                 backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
               }}
@@ -109,85 +101,89 @@ const Hero = () => {
               Transforming Futures
             </motion.span>
           </motion.h1>
-        </motion.div>
-
-        <motion.p 
-          className="text-xl text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
-          The first multi-tenant SaaS platform designed for institutions to seamlessly manage 
-          alumni networks, boost engagement, and drive meaningful connections.
-        </motion.p>
-
-        {/* CTA Buttons with Advanced Interactions */}
-        <motion.div 
-          className="flex flex-col sm:flex-row gap-6 justify-center items-center"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.9 }}
-        >
-          <motion.button 
-            className="group relative bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-xl text-lg font-semibold overflow-hidden"
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.98 }}
-            onHoverStart={() => setIsHovered(true)}
-            onHoverEnd={() => setIsHovered(false)}
+          <motion.p 
+            className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600"
-              initial={{ x: '-100%' }}
-              animate={{ x: isHovered ? '0%' : '-100%' }}
-              transition={{ duration: 0.3 }}
-            />
-            <span className="relative z-10 flex items-center">
-              Explore Features
+            The first multi-tenant SaaS platform designed for institutions to seamlessly manage 
+            alumni networks, boost engagement, and drive meaningful connections.
+          </motion.p>
+
+          {/* CTA Buttons with Advanced Interactions */}
+          <motion.div 
+            className="flex flex-col sm:flex-row gap-4 justify-center items-stretch sm:items-center"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.9 }}
+          >
+            <motion.button 
+              className="group relative bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-base sm:text-lg font-semibold overflow-hidden"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              onHoverStart={() => setIsHovered(true)}
+              onHoverEnd={() => setIsHovered(false)}
+              onClick={() => {
+                const event = new CustomEvent('open-guided-demo');
+                window.dispatchEvent(event);
+              }}
+            >
               <motion.div
-                animate={{ x: isHovered ? 5 : 0 }}
+                className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600"
+                initial={{ x: '-100%' }}
+                animate={{ x: isHovered ? '0%' : '-100%' }}
+                transition={{ duration: 0.3 }}
+              />
+              <span className="relative z-10 flex items-center justify-center">
+                Start Guided Demo
+                <motion.div
+                  animate={{ x: isHovered ? 5 : 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </motion.div>
+              </span>
+              
+              {/* Ripple Effect */}
+              <motion.div
+                className="absolute inset-0 bg-white opacity-20 rounded-full"
+                initial={{ scale: 0, opacity: 0 }}
+                whileTap={{ scale: 4, opacity: 0 }}
+                transition={{ duration: 0.4 }}
+              />
+            </motion.button>
+
+            <motion.button 
+              className="group relative border-2 border-gray-300 text-gray-700 px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-base sm:text-lg font-semibold bg-white backdrop-blur-sm"
+              whileHover={{ 
+                scale: 1.05, 
+                y: -2,
+                borderColor: '#3B82F6',
+                boxShadow: '0 10px 25px rgba(59, 130, 246, 0.2)'
+              }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl"
+                initial={{ opacity: 0 }}
+                whileHover={{ opacity: 1 }}
                 transition={{ duration: 0.2 }}
-              >
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </motion.div>
-            </span>
-            
-            {/* Ripple Effect */}
-            <motion.div
-              className="absolute inset-0 bg-white opacity-20 rounded-full"
-              initial={{ scale: 0, opacity: 0 }}
-              whileTap={{ scale: 4, opacity: 0 }}
-              transition={{ duration: 0.4 }}
-            />
-          </motion.button>
-
-          <motion.button 
-            className="group relative border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-xl text-lg font-semibold bg-white backdrop-blur-sm"
-            whileHover={{ 
-              scale: 1.05, 
-              y: -2,
-              borderColor: '#3B82F6',
-              boxShadow: '0 10px 25px rgba(59, 130, 246, 0.2)'
-            }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl"
-              initial={{ opacity: 0 }}
-              whileHover={{ opacity: 1 }}
-              transition={{ duration: 0.2 }}
-            />
-            <span className="relative z-10 flex items-center">
-              <motion.div
-                animate={{ rotate: [0, 360] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                className="mr-2"
-              >
-                <Play className="h-5 w-5" />
-              </motion.div>
-              Request Demo
-            </span>
-          </motion.button>
+              />
+              <span className="relative z-10 flex items-center justify-center">
+                <motion.div
+                  animate={{ rotate: [0, 360] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                  className="mr-2"
+                >
+                  <Play className="h-5 w-5" />
+                </motion.div>
+                Request Demo
+              </span>
+            </motion.button>
+          </motion.div>
         </motion.div>
+
 
         {/* Stats Counter */}
         <motion.div 
@@ -221,15 +217,6 @@ const Hero = () => {
         </motion.div>
       </div>
 
-      {/* Mouse Follower */}
-      <motion.div
-        className="fixed top-0 left-0 w-6 h-6 bg-blue-400 rounded-full pointer-events-none z-50 mix-blend-difference"
-        animate={{
-          x: mousePosition.x - 12,
-          y: mousePosition.y - 12,
-        }}
-        transition={{ type: "spring", stiffness: 500, damping: 28 }}
-      />
     </section>
   );
 };

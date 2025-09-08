@@ -170,19 +170,7 @@ const Contact = () => {
         </div>
       </div>
 
-      <div className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-            <div className="h-80 bg-gray-200 flex items-center justify-center">
-              <div className="text-center">
-                <MapPin className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                <p className="text-gray-500">Interactive Map Placeholder</p>
-                <p className="text-sm text-gray-400">Google Maps integration would go here</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* Map section removed as requested */}
     </div>
   );
 };

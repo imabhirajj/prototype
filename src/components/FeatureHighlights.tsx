@@ -119,7 +119,7 @@ const FeatureHighlights = () => {
             {highlights.map((highlight, index) => (
               <motion.button
                 key={index}
-                className={`flex items-center space-x-3 px-6 py-3 rounded-xl font-semibold transition-all ${
+                className={`relative overflow-hidden flex items-center space-x-3 px-6 py-3 rounded-xl font-semibold transition-all ${
                   activeTab === index 
                     ? 'text-white shadow-lg' 
                     : 'text-gray-600 hover:text-gray-900'
@@ -128,20 +128,16 @@ const FeatureHighlights = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <AnimatePresence>
-                  {activeTab === index && (
-                    <motion.div
-                      className={`absolute inset-0 bg-gradient-to-r ${highlight.color} rounded-xl`}
-                      layoutId="activeTab"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                    />
-                  )}
-                </AnimatePresence>
+                {activeTab === index && (
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-r ${highlight.color} rounded-xl`}
+                    aria-hidden="true"
+                  />
+                )}
                 <highlight.icon className="w-5 h-5 relative z-10" />
                 <span className="relative z-10">{highlight.title}</span>
+
+                
               </motion.button>
             ))}
           </div>
