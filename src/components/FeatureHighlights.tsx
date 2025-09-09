@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useNavigate } from 'react-router-dom';
 import { MessageCircle, Users, DollarSign, ChevronRight, Zap, Target, Globe } from 'lucide-react';
 
 const FeatureHighlights = () => {
+  const navigate = useNavigate();
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -223,6 +225,7 @@ const FeatureHighlights = () => {
               boxShadow: '0 20px 40px rgba(59, 130, 246, 0.3)'
             }}
             whileTap={{ scale: 0.98 }}
+            onClick={() => navigate('/features')}
           >
             <motion.div
               className="absolute inset-0 bg-white opacity-0"

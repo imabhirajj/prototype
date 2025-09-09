@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, Calendar } from 'lucide-react';
+import DemoBookingModal from '../components/DemoBookingModal';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +13,7 @@ const Contact = () => {
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState<string | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [demoModalOpen, setDemoModalOpen] = useState(false);
 
   const validate = () => {
     const next: Record<string, string> = {};
@@ -108,7 +110,10 @@ const Contact = () => {
                 <p className="text-gray-600 mb-4">
                   See Alumni Nexus in action with a personalized 30-minute demo.
                 </p>
-                <button className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                <button 
+                  onClick={() => setDemoModalOpen(true)}
+                  className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+                >
                   Book Demo Call
                 </button>
               </div>
@@ -199,6 +204,12 @@ const Contact = () => {
       </div>
 
       {/* Map section removed as requested */}
+      
+      {/* Demo Booking Modal */}
+      <DemoBookingModal 
+        open={demoModalOpen} 
+        onClose={() => setDemoModalOpen(false)} 
+      />
     </div>
   );
 };

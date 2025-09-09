@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { GraduationCap, Heart, Twitter, Linkedin, Github } from 'lucide-react';
+import { Heart, Twitter, Linkedin, Github } from 'lucide-react';
+import Logo from './Logo';
 
 const Footer = () => {
   return (
@@ -35,18 +36,12 @@ const Footer = () => {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-10 items-start">
           {/* Brand + tagline */}
           <div>
-            <motion.div 
-              className="flex items-center space-x-3 mb-4"
+            <motion.div
+              className="mb-4"
               whileHover={{ scale: 1.03 }}
               transition={{ duration: 0.2 }}
             >
-              <motion.div
-                animate={{ rotate: [0, 360] }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              >
-                <GraduationCap className="h-8 w-8 text-blue-600" />
-              </motion.div>
-              <span className="text-xl font-bold text-gray-900">Alumni Nexus</span>
+              <Logo size="lg" animated={true} />
             </motion.div>
             <p className="text-gray-600 text-sm leading-relaxed mb-4">
               The modern alumni engagement platform for institutions that want real outcomes: stronger networks, higher participation, and measurable impact.

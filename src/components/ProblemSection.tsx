@@ -273,6 +273,10 @@ const ProblemSection = () => {
               boxShadow: '0 20px 40px rgba(59, 130, 246, 0.3)'
             }}
             whileTap={{ scale: 0.98 }}
+            onClick={() => {
+              const event = new CustomEvent('open-transformation-showcase');
+              window.dispatchEvent(event);
+            }}
           >
             See the Transformation in Action
           </motion.button>

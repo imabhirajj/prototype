@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Target, Eye, Users } from 'lucide-react';
 
 const About = () => {
@@ -81,25 +82,99 @@ const About = () => {
       <div className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-16">
-            <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
-              <Target className="h-12 w-12 text-blue-600 mb-6" />
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Mission</h3>
-              <p className="text-gray-600 leading-relaxed">
+            <motion.div 
+              className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 relative overflow-hidden group cursor-pointer"
+              whileHover={{ 
+                y: -8,
+                scale: 1.02,
+                boxShadow: '0 25px 50px rgba(0, 0, 0, 0.15)'
+              }}
+              transition={{ 
+                type: "spring", 
+                stiffness: 300, 
+                damping: 30 
+              }}
+            >
+              {/* Animated background gradient */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-100 opacity-0"
+                whileHover={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+              />
+              
+              {/* Icon with hover animation */}
+              <motion.div
+                className="relative z-10"
+                whileHover={{ 
+                  scale: 1.1,
+                  rotate: 5
+                }}
+                transition={{ duration: 0.2 }}
+              >
+                <Target className="h-12 w-12 text-blue-600 mb-6" />
+              </motion.div>
+              
+              <h3 className="text-2xl font-bold text-gray-900 mb-4 relative z-10">Our Mission</h3>
+              <p className="text-gray-600 leading-relaxed relative z-10">
                 To empower educational institutions with the tools they need to build 
                 thriving, engaged alumni communities that drive mutual success and 
                 lasting impact.
               </p>
-            </div>
+              
+              {/* Hover effect border */}
+              <motion.div
+                className="absolute inset-0 border-2 border-blue-200 rounded-xl opacity-0"
+                whileHover={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+              />
+            </motion.div>
             
-            <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
-              <Eye className="h-12 w-12 text-blue-600 mb-6" />
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Vision</h3>
-              <p className="text-gray-600 leading-relaxed">
+            <motion.div 
+              className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 relative overflow-hidden group cursor-pointer"
+              whileHover={{ 
+                y: -8,
+                scale: 1.02,
+                boxShadow: '0 25px 50px rgba(0, 0, 0, 0.15)'
+              }}
+              transition={{ 
+                type: "spring", 
+                stiffness: 300, 
+                damping: 30 
+              }}
+            >
+              {/* Animated background gradient */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-br from-purple-50 to-pink-100 opacity-0"
+                whileHover={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+              />
+              
+              {/* Icon with hover animation */}
+              <motion.div
+                className="relative z-10"
+                whileHover={{ 
+                  scale: 1.1,
+                  rotate: -5
+                }}
+                transition={{ duration: 0.2 }}
+              >
+                <Eye className="h-12 w-12 text-blue-600 mb-6" />
+              </motion.div>
+              
+              <h3 className="text-2xl font-bold text-gray-900 mb-4 relative z-10">Our Vision</h3>
+              <p className="text-gray-600 leading-relaxed relative z-10">
                 A world where every graduate remains connected to their alma mater, 
                 contributing to a cycle of learning, growth, and opportunity that 
                 benefits current and future students.
               </p>
-            </div>
+              
+              {/* Hover effect border */}
+              <motion.div
+                className="absolute inset-0 border-2 border-purple-200 rounded-xl opacity-0"
+                whileHover={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+              />
+            </motion.div>
           </div>
         </div>
       </div>

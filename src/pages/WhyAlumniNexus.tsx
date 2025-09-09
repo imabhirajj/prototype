@@ -164,16 +164,16 @@ const WhyAlumniNexus = () => {
         </div>
       </div>
 
-      <div className="py-20 bg-gradient-to-r from-blue-600 to-indigo-600">
+      <div className="py-12 sm:py-16 lg:py-20 bg-gradient-to-r from-blue-600 to-indigo-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold text-white mb-6">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 sm:mb-6 leading-tight">
             One Platform, Endless Alumni Possibilities
           </h2>
-          <p className="text-xl text-blue-100 mb-8">
+          <p className="text-base sm:text-lg lg:text-xl text-blue-100 mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed">
             Join hundreds of institutions already transforming their alumni relationships.
           </p>
           <button
-            className="bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors"
+            className="w-full sm:w-auto bg-white text-blue-600 px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
             onClick={() => setShowShowcase(true)}
           >
             Start Your Transformation
@@ -185,7 +185,7 @@ const WhyAlumniNexus = () => {
       <AnimatePresence>
         {showShowcase && (
           <motion.div
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+            className="fixed inset-0 z-[100] flex items-center justify-center p-2 sm:p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -199,7 +199,7 @@ const WhyAlumniNexus = () => {
             />
 
             <motion.div
-              className="relative w-full max-w-5xl bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden"
+              className="relative w-full max-w-5xl bg-white rounded-lg sm:rounded-2xl shadow-2xl border border-gray-100 overflow-hidden max-h-[90vh] overflow-y-auto"
               initial={{ y: 40, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 20, opacity: 0 }}
@@ -208,20 +208,20 @@ const WhyAlumniNexus = () => {
               aria-modal="true"
               aria-labelledby="showcase-title"
             >
-              <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 bg-gray-50">
-                <h3 id="showcase-title" className="text-lg sm:text-xl font-bold text-gray-900">
+              <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-100 bg-gray-50">
+                <h3 id="showcase-title" className="text-base sm:text-lg lg:text-xl font-bold text-gray-900 pr-2">
                   How Alumni Nexus Transforms Engagement
                 </h3>
                 <button
                   aria-label="Close"
                   onClick={() => setShowShowcase(false)}
-                  className="p-2 rounded-lg hover:bg-gray-100"
+                  className="p-2 rounded-lg hover:bg-gray-100 flex-shrink-0"
                 >
                   <Close className="w-5 h-5" />
                 </button>
               </div>
 
-              <div className="p-6 sm:p-8">
+              <div className="p-4 sm:p-6 lg:p-8">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   <motion.div
                     className="rounded-xl border border-gray-100 p-5 bg-gradient-to-br from-blue-50 to-white"

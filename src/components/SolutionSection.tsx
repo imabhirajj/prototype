@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Database, Users, Heart, TrendingUp, Shield, Sparkles } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const SolutionSection = () => {
   const [ref, inView] = useInView({
@@ -56,6 +57,7 @@ const SolutionSection = () => {
     }
   ];
 
+  const navigate = useNavigate();
   return (
     <section ref={ref} className="py-20 relative overflow-hidden">
       {/* Animated Background */}
@@ -252,10 +254,11 @@ const SolutionSection = () => {
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 1 }}
         >
-          <motion.div
-            className="inline-flex items-center space-x-2 text-blue-600 font-semibold"
-            animate={{ x: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
+          <motion.button
+            className="inline-flex items-center space-x-2 text-blue-600 font-semibold hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 rounded-md"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.97 }}
+            onClick={() => navigate('/features')}
           >
             <span>Discover more features</span>
             <motion.div
@@ -264,7 +267,7 @@ const SolutionSection = () => {
             >
               <Sparkles className="w-5 h-5" />
             </motion.div>
-          </motion.div>
+          </motion.button>
         </motion.div>
       </div>
     </section>

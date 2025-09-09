@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, GraduationCap, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, Play, Sparkles, Clock } from 'lucide-react';
+import Logo from './Logo';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hoveredLink, setHoveredLink] = useState<string | null>(null);
+  const [demoLoading, setDemoLoading] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -25,6 +28,16 @@ const Navbar = () => {
     { to: '/contact', label: 'Contact' }
   ];
 
+  const handleDemoClick = () => {
+    setDemoLoading(true);
+    // Simulate loading for better UX
+    setTimeout(() => {
+      const event = new CustomEvent('open-guided-demo');
+      window.dispatchEvent(event);
+      setDemoLoading(false);
+    }, 500);
+  };
+
   return (
     <motion.nav 
       className={`fixed top-0 w-full z-50 transition-all duration-500 ${
@@ -39,19 +52,12 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={`flex items-center justify-between transition-all duration-300 ${scrolled ? 'h-14' : 'h-16'}`}>
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 group">
-            <motion.div
-              whileHover={{ rotate: 360, scale: 1.1 }}
-              transition={{ duration: 0.6 }}
-            >
-              <GraduationCap className="h-8 w-8 text-blue-600 group-hover:text-blue-700 transition-colors" />
-            </motion.div>
-            <motion.span 
-              className="text-xl font-bold text-gray-900 group-hover:text-blue-700 transition-colors"
-              whileHover={{ scale: 1.05 }}
-            >
-              Alumni Nexus
-            </motion.span>
+          <Link to="/" className="group">
+            <Logo 
+              size={scrolled ? 'md' : 'lg'} 
+              animated={true}
+              className="group-hover:scale-105 transition-transform duration-300"
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -101,32 +107,85 @@ const Navbar = () => {
                 </motion.div>
               ))}
               
-              {/* CTA Button */}
-              <motion.button 
-                className="ml-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2 rounded-lg text-sm font-medium relative overflow-hidden group"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={() => {
-                  const event = new CustomEvent('open-guided-demo');
-                  window.dispatchEvent(event);
-                }}
-                aria-label="Start guided demo"
-              >
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600"
-                  initial={{ x: '-100%' }}
-                  whileHover={{ x: '0%' }}
-                  transition={{ duration: 0.3 }}
-                />
-                <span className="relative z-10">Start Demo</span>
-                
-                {/* Shine Effect */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-20"
-                  animate={{ x: ['-100%', '100%'] }}
-                  transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
-                />
-              </motion.button>
+              {/* CTA Button with Enhanced UX */}
+              <div className="relative ml-4">
+                <motion.button 
+                  className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2 rounded-lg text-sm font-medium relative overflow-hidden group flex items-center gap-2"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={handleDemoClick}
+                  onMouseEnter={() => setShowTooltip(true)}
+                  onMouseLeave={() => setShowTooltip(false)}
+                  disabled={demoLoading}
+                  aria-label="Start guided demo"
+                >
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600"
+                    initial={{ x: '-100%' }}
+                    whileHover={{ x: '0%' }}
+                    transition={{ duration: 0.3 }}
+                  />
+                  
+                  {/* Loading State */}
+                  <AnimatePresence mode="wait">
+                    {demoLoading ? (
+                      <motion.div
+                        key="loading"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.8 }}
+                        className="relative z-10 flex items-center gap-2"
+                      >
+                        <motion.div
+                          className="w-4 h-4 border-2 border-white border-t-transparent rounded-full"
+                          animate={{ rotate: 360 }}
+                          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                        />
+                        <span>Loading...</span>
+                      </motion.div>
+                    ) : (
+                      <motion.div
+                        key="normal"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.8 }}
+                        className="relative z-10 flex items-center gap-2"
+                      >
+                        <Play className="w-4 h-4" />
+                        <span>Start Demo</span>
+                        <Sparkles className="w-3 h-3 opacity-70" />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                  
+                  {/* Shine Effect */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-20"
+                    animate={{ x: ['-100%', '100%'] }}
+                    transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+                  />
+                </motion.button>
+
+                {/* Tooltip */}
+                <AnimatePresence>
+                  {showTooltip && !demoLoading && (
+                    <motion.div
+                      className="absolute top-full mt-2 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white text-xs px-3 py-2 rounded-lg shadow-lg whitespace-nowrap z-50"
+                      initial={{ opacity: 0, y: -10, scale: 0.8 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -10, scale: 0.8 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <div className="flex items-center gap-2">
+                        <Clock className="w-3 h-3" />
+                        <span>30-minute interactive demo</span>
+                      </div>
+                      {/* Arrow */}
+                      <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-gray-900 rotate-45" />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             </div>
           </div>
 
@@ -197,18 +256,54 @@ const Navbar = () => {
                 ))}
                 
                 <motion.button
-                  className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-3 rounded-lg text-base font-medium"
+                  className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-3 rounded-lg text-base font-medium flex items-center justify-center gap-2 relative overflow-hidden group"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: navLinks.length * 0.1 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => {
-                    const event = new CustomEvent('open-guided-demo');
-                    window.dispatchEvent(event);
+                    handleDemoClick();
                     setIsOpen(false);
                   }}
+                  disabled={demoLoading}
                 >
-                  Start Demo
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600"
+                    initial={{ x: '-100%' }}
+                    whileHover={{ x: '0%' }}
+                    transition={{ duration: 0.3 }}
+                  />
+                  
+                  <AnimatePresence mode="wait">
+                    {demoLoading ? (
+                      <motion.div
+                        key="loading"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.8 }}
+                        className="relative z-10 flex items-center gap-2"
+                      >
+                        <motion.div
+                          className="w-4 h-4 border-2 border-white border-t-transparent rounded-full"
+                          animate={{ rotate: 360 }}
+                          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                        />
+                        <span>Loading...</span>
+                      </motion.div>
+                    ) : (
+                      <motion.div
+                        key="normal"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.8 }}
+                        className="relative z-10 flex items-center gap-2"
+                      >
+                        <Play className="w-4 h-4" />
+                        <span>Start Demo</span>
+                        <Sparkles className="w-3 h-3 opacity-70" />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </motion.button>
               </div>
             </motion.div>
