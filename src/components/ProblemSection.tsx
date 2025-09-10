@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { AlertTriangle, ArrowRight, X, Check, Zap } from 'lucide-react';
+import { AlertTriangle, Minus, Check, Zap } from 'lucide-react';
 
 const ProblemSection = () => {
   const [ref, inView] = useInView({
@@ -70,10 +70,10 @@ const ProblemSection = () => {
           </motion.p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-16 items-start">
           {/* Traditional Approach */}
           <motion.div 
-            className="relative bg-white p-8 rounded-2xl shadow-lg border-2 border-red-100 overflow-hidden"
+            className="relative bg-white p-8 rounded-2xl shadow-lg border-2 border-gray-200 overflow-hidden"
             initial={{ opacity: 0, x: -100, rotateY: -15 }}
             animate={inView ? { opacity: 1, x: 0, rotateY: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -82,14 +82,8 @@ const ProblemSection = () => {
               boxShadow: '0 20px 40px rgba(239, 68, 68, 0.1)'
             }}
           >
-            {/* Glitch Effect Background */}
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-br from-red-50 to-orange-50"
-              animate={{
-                opacity: [0.3, 0.6, 0.3],
-              }}
-              transition={{ duration: 2, repeat: Infinity }}
-            />
+            {/* Subtle background */}
+            <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-slate-50" />
             
             <div className="relative z-10 text-center">
               <motion.div
@@ -99,7 +93,7 @@ const ProblemSection = () => {
                 }}
                 transition={{ duration: 2, repeat: Infinity }}
               >
-                <AlertTriangle className="h-16 w-16 text-red-500 mx-auto mb-6" />
+                <AlertTriangle className="h-16 w-16 text-amber-500 mx-auto mb-6" />
               </motion.div>
               
               <h3 className="text-2xl font-bold text-gray-900 mb-6">Traditional Approach</h3>
@@ -112,68 +106,19 @@ const ProblemSection = () => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={inView ? { opacity: 1, x: 0 } : {}}
                     transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-                    whileHover={{ x: 5, color: '#EF4444' }}
+                    whileHover={{ x: 5, color: '#374151' }}
                   >
-                    <X className="w-5 h-5 text-red-500 mr-3 flex-shrink-0" />
+                    <Minus className="w-5 h-5 text-gray-500 mr-3 flex-shrink-0" />
                     <span>{problem}</span>
                   </motion.div>
                 ))}
               </div>
             </div>
-
-            {/* Animated Warning Lines */}
-            {Array.from({ length: 3 }).map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute top-0 left-0 w-full h-0.5 bg-red-400 opacity-30"
-                animate={{
-                  scaleX: [0, 1, 0],
-                  y: [0, 200, 400]
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  delay: i * 0.5
-                }}
-              />
-            ))}
           </motion.div>
 
-          {/* Arrow with Pulse Animation */}
-          <motion.div 
-            className="flex justify-center"
-            initial={{ opacity: 0, scale: 0 }}
-            animate={inView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.8 }}
-          >
-            <motion.div
-              animate={{ 
-                x: [0, 10, 0],
-                scale: [1, 1.2, 1]
-              }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="relative"
-            >
-              <ArrowRight className="h-12 w-12 text-blue-600" />
-              
-              {/* Pulse Rings */}
-              {Array.from({ length: 3 }).map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute inset-0 border-2 border-blue-400 rounded-full"
-                  animate={{
-                    scale: [1, 2, 3],
-                    opacity: [0.6, 0.3, 0]
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    delay: i * 0.4
-                  }}
-                />
-              ))}
-            </motion.div>
-          </motion.div>
+          {/* Spacer to push solution card to the right on large screens */}
+          <div className="hidden lg:block" />
+
 
           {/* Alumni Nexus Solution */}
           <motion.div 

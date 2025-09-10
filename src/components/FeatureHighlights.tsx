@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useNavigate } from 'react-router-dom';
-import { MessageCircle, Users, DollarSign, ChevronRight, Zap, Target, Globe } from 'lucide-react';
+import { MessageCircle, Users, IndianRupee, ChevronRight, Zap, Target, Globe } from 'lucide-react';
 
 const FeatureHighlights = () => {
   const navigate = useNavigate();
@@ -39,13 +39,13 @@ const FeatureHighlights = () => {
       ]
     },
     {
-      icon: DollarSign,
+      icon: IndianRupee,
       title: 'Fundraising',
       color: 'from-purple-500 to-pink-500',
       bgGradient: 'from-purple-50 to-pink-50',
       features: [
         { icon: Target, title: 'Campaign management', desc: 'End-to-end campaign tools' },
-        { icon: DollarSign, title: 'Donation processing', desc: 'Secure payment handling' },
+        { icon: IndianRupee, title: 'Donation processing', desc: 'Secure payment handling' },
         { icon: Globe, title: 'Donor analytics', desc: 'Comprehensive donor insights' },
         { icon: Zap, title: 'Tax documentation', desc: 'Automated receipt generation' }
       ]

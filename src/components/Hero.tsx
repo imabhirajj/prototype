@@ -7,9 +7,7 @@ const Hero = () => {
 
   const floatingIcons = [
     { Icon: Users, delay: 0, x: 100, y: 50 },
-    { Icon: TrendingUp, delay: 0.5, x: -80, y: 80 },
-    { Icon: Globe, delay: 1, x: 120, y: -60 },
-    { Icon: Sparkles, delay: 1.5, x: -100, y: -40 }
+    { Icon: TrendingUp, delay: 0.5, x: -80, y: 80 }
   ];
 
   return (
@@ -29,26 +27,74 @@ const Hero = () => {
         />
       </div>
 
-      {/* Floating Particles (hidden on small screens for performance) */}
-      <div className="hidden sm:block">
-        {Array.from({ length: 20 }).map((_, i) => (
+      {/* Edge Decorations: subtle gradient orbs placed away from text area */}
+      <div className="pointer-events-none absolute inset-0 hidden md:block">
+        <motion.div
+          className="absolute w-40 h-40 rounded-full blur-3xl opacity-40"
+          style={{ left: '3%', top: '25%', background: 'radial-gradient(circle, rgba(99,102,241,0.6) 0%, rgba(99,102,241,0) 70%)' }}
+          animate={{ y: [0, -12, 0] }}
+          transition={{ duration: 8, repeat: Infinity }}
+          aria-hidden
+        />
+        <motion.div
+          className="absolute w-48 h-48 rounded-full blur-3xl opacity-40"
+          style={{ right: '4%', top: '55%', background: 'radial-gradient(circle, rgba(59,130,246,0.6) 0%, rgba(59,130,246,0) 70%)' }}
+          animate={{ y: [0, -16, 0] }}
+          transition={{ duration: 10, repeat: Infinity }}
+          aria-hidden
+        />
+
+        {/* Sparkle stars near corners (away from text) */}
+        <motion.div
+          className="absolute text-blue-500/50"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1, rotate: [0, 15, -10, 0] }}
+          transition={{ duration: 8, repeat: Infinity }}
+          style={{ left: '6%', top: '12%' }}
+          aria-hidden
+        >
+          <Sparkles className="w-8 h-8" />
+        </motion.div>
+        <motion.div
+          className="absolute text-purple-500/50"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1, rotate: [0, -12, 8, 0] }}
+          transition={{ duration: 9, repeat: Infinity, delay: 0.6 }}
+          style={{ right: '7%', bottom: '10%' }}
+          aria-hidden
+        >
+          <Sparkles className="w-9 h-9" />
+        </motion.div>
+
+        {/* Floating bubbles along edges */}
+        {Array.from({ length: 6 }).map((_, i) => (
           <motion.div
-            key={i}
-            className="absolute w-2 h-2 bg-blue-400 rounded-full opacity-20"
-            animate={{
-              y: [0, -100, 0],
-              x: [0, Math.random() * 100 - 50, 0],
-              scale: [1, 1.5, 1],
-            }}
-            transition={{
-              duration: 3 + Math.random() * 2,
-              repeat: Infinity,
-              delay: Math.random() * 2,
-            }}
+            key={`bubble-left-${i}`}
+            className="absolute rounded-full bg-cyan-400/20 backdrop-blur-sm"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              left: `${2 + (i % 2) * 2}%`,
+              top: `${15 + i * 12}%`,
+              width: `${10 + (i % 3) * 6}px`,
+              height: `${10 + (i % 3) * 6}px`,
             }}
+            animate={{ y: [0, -14, 0], opacity: [0.5, 0.8, 0.5] }}
+            transition={{ duration: 5 + i, repeat: Infinity, delay: i * 0.4 }}
+            aria-hidden
+          />
+        ))}
+        {Array.from({ length: 6 }).map((_, i) => (
+          <motion.div
+            key={`bubble-right-${i}`}
+            className="absolute rounded-full bg-indigo-400/20 backdrop-blur-sm"
+            style={{
+              right: `${3 + (i % 2) * 2}%`,
+              top: `${20 + i * 10}%`,
+              width: `${8 + (i % 3) * 6}px`,
+              height: `${8 + (i % 3) * 6}px`,
+            }}
+            animate={{ y: [0, -16, 0], opacity: [0.5, 0.85, 0.5] }}
+            transition={{ duration: 6 + i, repeat: Infinity, delay: 0.2 + i * 0.35 }}
+            aria-hidden
           />
         ))}
       </div>
@@ -154,38 +200,6 @@ const Hero = () => {
                 whileTap={{ scale: 4, opacity: 0 }}
                 transition={{ duration: 0.4 }}
               />
-            </motion.button>
-
-            <motion.button 
-              className="group relative border-2 border-gray-300 text-gray-700 px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-base sm:text-lg font-semibold bg-white backdrop-blur-sm"
-              whileHover={{ 
-                scale: 1.05, 
-                y: -2,
-                borderColor: '#3B82F6',
-                boxShadow: '0 10px 25px rgba(59, 130, 246, 0.2)'
-              }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => {
-                const event = new CustomEvent('open-transformation-showcase');
-                window.dispatchEvent(event);
-              }}
-            >
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl"
-                initial={{ opacity: 0 }}
-                whileHover={{ opacity: 1 }}
-                transition={{ duration: 0.2 }}
-              />
-              <span className="relative z-10 flex items-center justify-center">
-                <motion.div
-                  animate={{ rotate: [0, 360] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                  className="mr-2"
-                >
-                  <Play className="h-5 w-5" />
-                </motion.div>
-                Request Demo
-              </span>
             </motion.button>
           </motion.div>
         </motion.div>
