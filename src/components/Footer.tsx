@@ -41,7 +41,7 @@ const Footer = () => {
               whileHover={{ scale: 1.03 }}
               transition={{ duration: 0.2 }}
             >
-              <Logo size="lg" animated={true} />
+              <Logo size="lg" animated={false} />
             </motion.div>
             <p className="text-gray-600 text-sm leading-relaxed mb-4">
               The modern alumni engagement platform for institutions that want real outcomes: stronger networks, higher participation, and measurable impact.

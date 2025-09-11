@@ -24,6 +24,8 @@ const UseCases = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
+    // Scroll to top when component mounts
+    window.scrollTo(0, 0);
     setIsVisible(true);
   }, []);
 
@@ -88,8 +90,8 @@ const UseCases = () => {
       cta: 'Transform Your Network',
       ctaIcon: ArrowRight,
       testimonial: {
-        quote: "Alumni Nexus helped us increase donations by 300% in just 6 months",
-        author: "Dr. Sarah Chen, Stanford University"
+        quote: "Alumni Nexus provides the modern platform we need for better alumni engagement",
+        author: "Educational Institution Representative"
       }
     },
     {
@@ -145,7 +147,7 @@ const UseCases = () => {
       gradient: 'from-purple-500 to-violet-700',
       bgGradient: 'from-purple-50 to-violet-50',
       accentColor: 'purple',
-      stats: { primary: '95%', secondary: 'Career Success Rate' },
+      stats: { primary: 'High', secondary: 'Success Rate' },
       benefits: [
         { 
           icon: Users, 
@@ -189,7 +191,7 @@ const UseCases = () => {
       gradient: 'from-orange-500 to-red-600',
       bgGradient: 'from-orange-50 to-red-50',
       accentColor: 'orange',
-      stats: { primary: '500+', secondary: 'Partner Companies' },
+      stats: { primary: 'Growing', secondary: 'Network' },
       benefits: [
         { 
           icon: Users, 
@@ -220,8 +222,8 @@ const UseCases = () => {
       cta: 'Partner With Us',
       ctaIcon: Briefcase,
       testimonial: {
-        quote: "We've hired 50+ exceptional candidates through Alumni Nexus partnerships",
-        author: "David Park, Google Talent Acquisition"
+        quote: "Alumni Nexus provides excellent opportunities to connect with talented graduates",
+        author: "Corporate Partner Representative"
       }
     }
   ];
@@ -235,7 +237,7 @@ const UseCases = () => {
             <Sparkles className="w-4 h-4" />
             Who Benefits From Alumni Nexus
           </div>
-          <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent mb-6">
+          <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent mb-6 leading-tight py-2">
             Built For Everyone
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
@@ -344,10 +346,10 @@ const UseCases = () => {
           <h3 className="text-3xl font-bold mb-8">Trusted by Leading Institutions Worldwide</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { number: '500+', label: 'Institutions' },
-              { number: '100k+', label: 'Active Alumni' },
-              { number: '95%', label: 'Satisfaction Rate' },
-              { number: '$50M+', label: 'Funds Raised' }
+              { number: 'Growing', label: 'Institutions' },
+              { number: 'Active', label: 'Alumni Network' },
+              { number: 'High', label: 'Satisfaction Rate' },
+              { number: 'Transparent', label: 'Pricing' }
             ].map((stat, index) => (
               <div key={index} className="text-center">
                 <div className="text-4xl font-bold text-blue-300 mb-2">{stat.number}</div>

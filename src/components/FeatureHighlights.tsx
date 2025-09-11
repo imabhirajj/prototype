@@ -225,7 +225,13 @@ const FeatureHighlights = () => {
               boxShadow: '0 20px 40px rgba(59, 130, 246, 0.3)'
             }}
             whileTap={{ scale: 0.98 }}
-            onClick={() => navigate('/features')}
+            onClick={() => {
+              navigate('/features');
+              // Ensure scroll to top after navigation
+              setTimeout(() => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }, 100);
+            }}
           >
             <motion.div
               className="absolute inset-0 bg-white opacity-0"

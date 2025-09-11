@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Play, Pause, Maximize2, X, Volume2, VolumeX } from 'lucide-react';
+import { Play, Pause, Maximize2, X, Volume2, VolumeX, Download } from 'lucide-react';
 
 const DemoPreview = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -147,10 +147,31 @@ const DemoPreview = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
                 <p className="text-sm text-gray-600">Schedule a personalized demo with our team</p>
               </div>
               <div className="flex gap-3">
-                <button className="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+                <button 
+                  className="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2"
+                  onClick={() => {
+                    // Simulate brochure download
+                    const link = document.createElement('a');
+                    link.href = '/brochure.pdf'; // This would be your actual brochure file
+                    link.download = 'AlumniNexus_Brochure.pdf';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                  }}
+                >
+                  <Download className="w-4 h-4" />
                   Download Brochure
                 </button>
-                <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                <button 
+                  className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
+                  onClick={() => {
+                    onClose();
+                    // Trigger demo modal from parent
+                    const event = new CustomEvent('open-guided-demo');
+                    window.dispatchEvent(event);
+                  }}
+                >
+                  <Play className="w-4 h-4" />
                   Schedule Demo
                 </button>
               </div>

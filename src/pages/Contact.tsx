@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { 
-  Mail, Phone, Send, Calendar,
+  Mail, Phone, Send,
   MessageSquare, Sparkles, CheckCircle,
   Building, User, Briefcase, Heart
 } from 'lucide-react';
@@ -13,11 +13,13 @@ const Contact = () => {
     institution: '',
     role: '',
     message: '',
-    type: 'demo'
+    type: 'pricing'
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
+    // Scroll to top when component mounts
+    window.scrollTo(0, 0);
     setIsVisible(true);
   }, []);
 
@@ -47,9 +49,9 @@ const Contact = () => {
     {
       icon: Phone,
       title: 'Call Us',
-      value: '+1 (555) 123-4567',
-      description: 'Mon-Fri 9am-6pm PST',
-      action: 'tel:+15551234567',
+      value: '+91 72898 90083',
+      description: 'Mon-Fri 9am-6pm IST',
+      action: 'tel:+9172898900833',
       color: 'from-green-500 to-green-600',
       bgColor: 'bg-green-50'
     },
@@ -61,42 +63,17 @@ const Contact = () => {
       action: '#',
       color: 'from-purple-500 to-purple-600',
       bgColor: 'bg-purple-50'
-    },
-    {
-      icon: Calendar,
-      title: 'Schedule Demo',
-      value: 'Book 30-min Call',
-      description: 'Personalized walkthrough',
-      action: '#',
-      color: 'from-orange-500 to-orange-600',
-      bgColor: 'bg-orange-50'
     }
   ];
 
   const offices = [
     {
-      city: 'San Francisco',
-      country: 'USA',
-      address: '123 Innovation Drive, San Francisco, CA 94107',
-      phone: '+1 (555) 123-4567',
-      email: 'sf@alumninexus.com',
+      city: 'Greater Noida',
+      country: 'India',
+      address: 'Knowledge Park 2, IILM University, Greater Noida, State - Uttar Pradesh',
+      phone: '+91 72898 90083',
+      email: 'hello@alumninexus.com',
       isHeadquarters: true
-    },
-    {
-      city: 'New York',
-      country: 'USA', 
-      address: '456 Business Ave, New York, NY 10001',
-      phone: '+1 (555) 234-5678',
-      email: 'ny@alumninexus.com',
-      isHeadquarters: false
-    },
-    {
-      city: 'London',
-      country: 'UK',
-      address: '789 Tech Street, London, UK EC1A 1BB',
-      phone: '+44 20 7946 0958',
-      email: 'london@alumninexus.com',
-      isHeadquarters: false
     }
   ];
 
@@ -170,7 +147,7 @@ const Contact = () => {
         </div>
 
         {/* Contact Methods */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="grid md:grid-cols-3 gap-6 mb-16">
           {contactMethods.map((method, index) => {
             const IconComponent = method.icon;
             return (
@@ -211,7 +188,6 @@ const Contact = () => {
                   <label className="block text-sm font-semibold text-gray-700 mb-3">I'm interested in:</label>
                   <div className="grid grid-cols-2 gap-3">
                     {[
-                      { id: 'demo', label: 'Scheduling a Demo', icon: Calendar },
                       { id: 'pricing', label: 'Getting Pricing', icon: Briefcase },
                       { id: 'partnership', label: 'Partnership', icon: Heart },
                       { id: 'support', label: 'Technical Support', icon: MessageSquare }

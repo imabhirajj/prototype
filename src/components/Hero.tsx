@@ -44,7 +44,8 @@ const Hero = () => {
           style={{ right: '4%', top: '55%', background: 'radial-gradient(circle, rgba(59,130,246,0.6) 0%, rgba(59,130,246,0) 70%)' }}
           animate={{ y: [0, -16, 0] }}
           transition={{ duration: 10, repeat: Infinity }}
-          aria-hidden
+          aria-hidden="true"
+          role="presentation"
         />
 
         {/* Sparkle stars near corners (away from text) */}
@@ -54,7 +55,8 @@ const Hero = () => {
           animate={{ opacity: 1, scale: 1, rotate: [0, 15, -10, 0] }}
           transition={{ duration: 8, repeat: Infinity }}
           style={{ left: '6%', top: '12%' }}
-          aria-hidden
+          aria-hidden="true"
+          role="presentation"
         >
           <Sparkles className="w-8 h-8" />
         </motion.div>
@@ -64,7 +66,8 @@ const Hero = () => {
           animate={{ opacity: 1, scale: 1, rotate: [0, -12, 8, 0] }}
           transition={{ duration: 9, repeat: Infinity, delay: 0.6 }}
           style={{ right: '7%', bottom: '10%' }}
-          aria-hidden
+          aria-hidden="true"
+          role="presentation"
         >
           <Sparkles className="w-9 h-9" />
         </motion.div>
@@ -82,7 +85,8 @@ const Hero = () => {
             }}
             animate={{ y: [0, -14, 0], opacity: [0.5, 0.8, 0.5] }}
             transition={{ duration: 5 + i, repeat: Infinity, delay: i * 0.4 }}
-            aria-hidden
+            aria-hidden="true"
+            role="presentation"
           />
         ))}
         {Array.from({ length: 6 }).map((_, i) => (
@@ -97,7 +101,8 @@ const Hero = () => {
             }}
             animate={{ y: [0, -16, 0], opacity: [0.5, 0.85, 0.5] }}
             transition={{ duration: 6 + i, repeat: Infinity, delay: 0.2 + i * 0.35 }}
-            aria-hidden
+            aria-hidden="true"
+            role="presentation"
           />
         ))}
       </div>
@@ -230,9 +235,9 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 1.2 }}
         >
           {[
-            { number: '500+', label: 'Institutions' },
-            { number: '2M+', label: 'Alumni Connected' },
-            { number: '95%', label: 'Satisfaction Rate' }
+            { number: 'Modern', label: 'Platform' },
+            { number: 'Growing', label: 'Network' },
+            { number: 'Innovative', label: 'Solution' }
           ].map((stat, index) => (
             <motion.div
               key={index}

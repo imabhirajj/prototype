@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { 
-  Check, X, Star, Zap, Shield, Globe, ArrowRight,
+  Check, Star, Zap, Shield, Globe, X,
   TrendingUp, Users, CreditCard, Database, Target,
   Calendar, Mail, CheckCircle
 } from 'lucide-react';
@@ -20,17 +20,12 @@ const WhyAlumniNexus = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
+    // Scroll to top when component mounts
+    window.scrollTo(0, 0);
     setIsVisible(true);
     setTimeout(() => setAnimateTable(true), 500);
   }, []);
 
-  const handleDemoClick = () => {
-    setShowDemoModal(true);
-  };
-
-  const handlePricingClick = () => {
-    setShowPricingModal(true);
-  };
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -161,57 +156,57 @@ const WhyAlumniNexus = () => {
   const uniqueFeatures = [
     {
       icon: Zap,
-      title: 'Lightning Fast Performance',
-      description: 'Built with modern web technologies for exceptional speed and reliability',
+      title: 'Modern Performance',
+      description: 'Built with cutting-edge web technologies for optimal speed and reliability',
       gradient: 'from-yellow-400 to-orange-500',
       bgColor: 'bg-yellow-50',
-      stats: '< 2s',
+      stats: 'Fast',
       statsLabel: 'Load Time'
     },
     {
       icon: Shield,
-      title: 'Enterprise Security',
-      description: 'Bank-level encryption and GDPR compliance ensure your data is always protected',
+      title: 'Secure by Design',
+      description: 'Built with security-first approach and data protection in mind',
       gradient: 'from-green-500 to-emerald-600',
       bgColor: 'bg-green-50',
-      stats: 'SOC 2',
-      statsLabel: 'Type II Certified'
+      stats: 'Secure',
+      statsLabel: 'Data Protection'
     },
     {
       icon: Globe,
-      title: 'Global Scalability',
-      description: 'Cloud-native architecture that grows with your alumni network worldwide',
+      title: 'Scalable Architecture',
+      description: 'Cloud-native design that can grow with your alumni network',
       gradient: 'from-blue-500 to-purple-600',
       bgColor: 'bg-blue-50',
-      stats: '99.9%',
-      statsLabel: 'Uptime SLA'
+      stats: 'Scalable',
+      statsLabel: 'Growth Ready'
     },
     {
       icon: Star,
-      title: 'Intuitive Experience',
-      description: 'User-friendly interface that requires minimal training for maximum adoption',
+      title: 'User-Friendly Design',
+      description: 'Intuitive interface designed for easy adoption and engagement',
       gradient: 'from-purple-500 to-pink-600',
       bgColor: 'bg-purple-50',
-      stats: '95%',
-      statsLabel: 'User Satisfaction'
+      stats: 'Easy',
+      statsLabel: 'To Use'
     }
   ];
 
   const competitiveAdvantages = [
     {
       icon: TrendingUp,
-      title: 'ROI-Focused',
-      description: 'Average 300% increase in alumni engagement within 6 months'
+      title: 'Innovation-Focused',
+      description: 'Cutting-edge technology designed to transform alumni engagement'
     },
     {
       icon: Users,
-      title: 'Community-Driven',
-      description: 'Built with input from 100+ educational institutions'
+      title: 'Student-Centric',
+      description: 'Built by students, for students and alumni communities'
     },
     {
       icon: CreditCard,
       title: 'Transparent Pricing',
-      description: 'No hidden fees, flexible plans that scale with your growth'
+      description: 'Clear, affordable pricing with no hidden costs'
     },
     {
       icon: Database,
@@ -276,23 +271,23 @@ const WhyAlumniNexus = () => {
                     </div>
                     <div className="col-span-3 text-center">
                       <div className={`inline-flex items-center justify-center w-12 h-12 rounded-full transition-all duration-300 ${
-                        item.traditional ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'
+                        item.traditional ? 'bg-green-100 text-green-600' : 'bg-gray-100 text-gray-600'
                       }`}>
                         {item.traditional ? (
                           <Check className="w-6 h-6" />
                         ) : (
-                          <X className="w-6 h-6" />
+                          <span className="text-2xl font-bold">-</span>
                         )}
                       </div>
                     </div>
                     <div className="col-span-3 text-center">
                       <div className={`inline-flex items-center justify-center w-12 h-12 rounded-full transition-all duration-300 ${
-                        item.alumniNexus ? 'bg-blue-100 text-blue-600 hover:scale-110' : 'bg-red-100 text-red-600'
+                        item.alumniNexus ? 'bg-blue-100 text-blue-600 hover:scale-110' : 'bg-gray-100 text-gray-600'
                       }`}>
                         {item.alumniNexus ? (
                           <Check className="w-6 h-6" />
                         ) : (
-                          <X className="w-6 h-6" />
+                          <span className="text-2xl font-bold">-</span>
                         )}
                       </div>
                     </div>
@@ -377,34 +372,25 @@ const WhyAlumniNexus = () => {
           </div>
         </div>
 
-        {/* Bottom CTA */}
+        {/* Value Statement */}
         <div className="text-center">
-          <div className="bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 rounded-3xl p-12 text-white">
+          <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-3xl p-12 border border-blue-100">
             <div className="flex justify-center mb-6">
-              <div className="flex items-center gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-6 h-6 text-yellow-400 fill-current" />
-                ))}
+              <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                <Users className="w-8 h-8 text-white" />
               </div>
             </div>
-            <h3 className="text-4xl font-bold mb-4">Join the Alumni Revolution</h3>
-            <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-              Don't let outdated systems hold back your alumni engagement. Experience the future of alumni management today.
+            <h3 className="text-4xl font-bold mb-4 text-gray-900">Ready to Transform Your Alumni Network?</h3>
+            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+              Join the growing community of institutions that are revolutionizing alumni engagement with Alumni Nexus. 
+              Experience the difference that modern technology and thoughtful design can make.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button 
-                onClick={handleDemoClick}
-                className="bg-white text-blue-600 px-8 py-4 rounded-2xl font-semibold hover:bg-gray-50 transition-colors shadow-lg flex items-center justify-center gap-2 group"
-              >
-                Schedule Demo
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
-              <button 
-                onClick={handlePricingClick}
-                className="border-2 border-white text-white px-8 py-4 rounded-2xl font-semibold hover:bg-white hover:text-blue-600 transition-colors"
-              >
-                View Pricing
-              </button>
+            <div className="flex justify-center">
+              <div className="bg-white rounded-2xl px-8 py-4 shadow-lg border border-gray-100">
+                <p className="text-gray-700 font-semibold">
+                  "The future of alumni management starts here"
+                </p>
+              </div>
             </div>
           </div>
         </div>

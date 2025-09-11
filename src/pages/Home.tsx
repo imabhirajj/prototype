@@ -4,7 +4,6 @@ import ProblemSection from '../components/ProblemSection';
 import SolutionSection from '../components/SolutionSection';
 import FeatureHighlights from '../components/FeatureHighlights';
 import GuidedDemo from '../components/GuidedDemo';
-import TrustedBy from '../components/TrustedBy';
 
 const Home = () => {
   const [demoOpen, setDemoOpen] = useState(false);
@@ -17,7 +16,6 @@ const Home = () => {
   return (
     <>
       <Hero />
-      <TrustedBy />
       <ProblemSection />
       <SolutionSection />
       <FeatureHighlights />

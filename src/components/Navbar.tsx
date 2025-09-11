@@ -55,7 +55,7 @@ const Navbar = () => {
           <Link to="/" className="group">
             <Logo 
               size={scrolled ? 'md' : 'lg'} 
-              animated={true}
+              animated={false}
               className="group-hover:scale-105 transition-transform duration-300"
             />
           </Link>

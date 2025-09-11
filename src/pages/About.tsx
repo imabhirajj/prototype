@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { 
-  Target, Eye, Users, Award, Rocket, Heart, Globe, 
-  ArrowRight, Linkedin, Twitter, Mail,
-  Sparkles, Star, TrendingUp, Shield
+  Target, Eye, Users, Rocket, Heart, Globe, 
+  ArrowRight, Linkedin, Mail,
+  Sparkles, Star, TrendingUp, Shield, Award
 } from 'lucide-react';
 
 const About = () => {
@@ -10,94 +10,131 @@ const About = () => {
   const [activeSection, setActiveSection] = useState('mission');
 
   useEffect(() => {
+    // Scroll to top when component mounts
+    window.scrollTo(0, 0);
     setIsVisible(true);
   }, []);
 
-  const team = [
+  const developmentTeam = [
     {
-      name: 'Sarah Chen',
-      role: 'CEO & Co-founder',
-      image: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400',
-      bio: 'Former VP of Alumni Relations at Stanford with 10+ years transforming educational communities.',
-      expertise: ['Alumni Strategy', 'Leadership', 'Product Vision'],
+      name: 'Akshat Singh',
+      role: 'PHP & Backend Developer',
+      image: 'team/akshat.jpg',
+      bio: 'Passionate about building scalable backend solutions and API development.',
+      expertise: ['PHP', 'Backend Development', 'API Design'],
       social: {
-        linkedin: '#',
-        twitter: '#',
-        email: 'sarah@alumninexus.com'
+        linkedin: 'https://www.linkedin.com/in/akshat-singh-1b001325b/',
+        email: 'akshat@sgca.live'
       },
-      achievements: ['Forbes 30 Under 30', 'EdTech Innovation Award']
+      color: 'from-blue-500 to-blue-600'
     },
     {
-      name: 'Michael Rodriguez',
-      role: 'CTO & Co-founder',
-      image: 'https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=400',
-      bio: 'Ex-Google engineer with expertise in scalable SaaS platforms and machine learning systems.',
-      expertise: ['System Architecture', 'AI/ML', 'Cloud Infrastructure'],
+      name: 'Abhiraj Singh',
+      role: 'Frontend Developer',
+      image: 'team/abhiraj.jpg',
+      bio: 'Creative frontend developer focused on user experience and modern web technologies.',
+      expertise: ['React', 'JavaScript', 'UI Development'],
       social: {
-        linkedin: '#',
-        twitter: '#',
-        email: 'michael@alumninexus.com'
+        linkedin: 'https://www.linkedin.com/in/abhiraj-singh-4898b8310',
+        email: 'abhiraj@sgca.live'
       },
-      achievements: ['Google Cloud Architect', 'AWS Solutions Expert']
+      color: 'from-green-500 to-green-600'
     },
     {
-      name: 'Emily Johnson',
-      role: 'Head of Product',
-      image: 'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=400',
-      bio: 'UX expert focused on creating intuitive experiences that drive user adoption and engagement.',
-      expertise: ['UX/UI Design', 'User Research', 'Product Strategy'],
+      name: 'Shivansh',
+      role: 'Backend Developer',
+      image: 'team/shivansh.jpg',
+      bio: 'Expert in server-side development and database architecture.',
+      expertise: ['Backend Development', 'Database Design', 'System Architecture'],
       social: {
-        linkedin: '#',
-        twitter: '#',
-        email: 'emily@alumninexus.com'
+        linkedin: 'https://www.linkedin.com/in/shivansh-sgca',
+        email: 'shivansh@sgca.live'
       },
-      achievements: ['Design Excellence Award', 'UX Innovation Leader']
+      color: 'from-purple-500 to-purple-600'
     },
     {
-      name: 'David Park',
-      role: 'Head of Engineering',
-      image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400',
-      bio: 'Full-stack developer with 10+ years building enterprise software that scales globally.',
-      expertise: ['Full-Stack Development', 'DevOps', 'Security'],
+      name: 'Ishita',
+      role: 'UI/UX Designer',
+      image: 'team/ishita.jpg',
+      bio: 'Design enthusiast creating beautiful and intuitive user experiences.',
+      expertise: ['UI/UX Design', 'Figma', 'User Research'],
       social: {
-        linkedin: '#',
-        twitter: '#',
-        email: 'david@alumninexus.com'
+        linkedin: 'https://www.linkedin.com/in/ishitasingh-india',
+        email: 'ishita@sgca.com'
       },
-      achievements: ['Open Source Contributor', 'Tech Innovation Award']
+      color: 'from-pink-500 to-pink-600'
+    },
+    {
+      name: 'Arpit',
+      role: 'Frontend Developer',
+      image: 'team/arpit.jpg',
+      bio: 'Full-stack developer with a passion for creating responsive and dynamic interfaces.',
+      expertise: ['Frontend Development', 'JavaScript', 'React'],
+      social: {
+        linkedin: 'https://www.linkedin.com/in/arpit-yadav-4b14a8357',
+        email: 'arpit@sgca.live'
+      },
+      color: 'from-orange-500 to-orange-600'
+    }
+  ];
+
+  const mentors = [
+    {
+      name: 'Dr. Suman Yadav',
+      role: 'Academic Mentor',
+      image: 'team/suman.jpeg',
+      bio: 'Experienced academic professional guiding our team with industry insights and research methodology.',
+      expertise: ['Academic Research', 'Industry Guidance', 'Project Management'],
+      social: {
+        linkedin: 'https://www.linkedin.com/in/suman-avdhesh-yadav-ph-d-193b3a20',
+        email: 'suman@sgca.live'
+      },
+      color: 'from-indigo-500 to-indigo-600'
+    },
+    {
+      name: 'Ritu Gothwal',
+      role: 'Industry Mentor',
+      image: 'team/ritu.jpeg',
+      bio: 'Industry expert providing strategic guidance and real-world business perspective.',
+      expertise: ['Business Strategy', 'Industry Experience', 'Leadership'],
+      social: {
+        linkedin: 'https://www.linkedin.com/in/ritu-gothwal-b0214689',
+        email: 'ritu@sgca.live'
+      },
+      color: 'from-teal-500 to-teal-600'
     }
   ];
 
   const companyStats = [
-    { number: '2023', label: 'Founded', icon: Rocket },
-    { number: '500+', label: 'Institutions Served', icon: Target },
-    { number: '100k+', label: 'Alumni Connected', icon: Users },
-    { number: '50+', label: 'Countries Reached', icon: Globe }
+    { number: '5', label: 'Team Members', icon: Users },
+    { number: '1', label: 'Prototype Ready', icon: Rocket },
+    { number: '∞', label: 'Possibilities', icon: Target },
+    { number: '2025', label: 'Hackathon Year', icon: Globe }
   ];
 
   const milestones = [
     {
-      year: '2023',
-      title: 'Company Founded',
-      description: 'Started with a vision to revolutionize alumni engagement',
+      year: '5 September 2025',
+      title: 'Idea Born',
+      description: 'Identified the gap between students and alumni communities',
       color: 'from-blue-500 to-blue-600'
     },
     {
-      year: '2024',
-      title: 'First 100 Institutions',
-      description: 'Reached our first major milestone with leading universities',
+      year: '6 September 2025',
+      title: 'Team Formation',
+      description: 'Brought together passionate developers and designers',
       color: 'from-green-500 to-green-600'
     },
     {
-      year: '2024',
-      title: 'AI Features Launch',
-      description: 'Introduced machine learning-powered matching and insights',
+      year: '8 September 2025',
+      title: 'Prototype Development',
+      description: 'Built our first working prototype with core features',
       color: 'from-purple-500 to-purple-600'
     },
     {
-      year: '2025',
-      title: 'Global Expansion',
-      description: 'Serving institutions across 50+ countries worldwide',
+      year: '12 September 2025',
+      title: 'Hackathon Ready',
+      description: 'Preparing to showcase our solution to the world',
       color: 'from-orange-500 to-orange-600'
     }
   ];
@@ -142,7 +179,7 @@ const About = () => {
             About Alumni Nexus
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            We're on a mission to transform how educational institutions connect with their alumni communities worldwide
+            Our journey started with a simple idea – to build a bridge between students and alumni. We identified the gap where students lacked mentorship and alumni needed a platform to connect back with their institute. From brainstorming and facing technical challenges to designing a user-friendly solution, our team worked with dedication to create a platform that fosters networking, guidance, and opportunities. This is just the beginning, and we aim to keep growing this alumni network stronger every day.
           </p>
         </div>
 
@@ -241,16 +278,16 @@ const About = () => {
             <h3 className="text-4xl font-bold text-center mb-12">Our Journey</h3>
             <div className="max-w-4xl mx-auto">
               <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-                Founded in 2023, Alumni Nexus emerged from a simple observation: despite the digital revolution, 
-                most educational institutions still struggled to maintain meaningful connections with their alumni.
+                Alumni Nexus emerged from a simple observation: despite the digital revolution, 
+                most educational institutions still struggle to maintain meaningful connections with their alumni.
               </p>
               <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-                Our founders, with backgrounds in education technology and alumni relations, saw an opportunity to create 
+                Our team, with backgrounds in development and design, saw an opportunity to create 
                 something different—a platform that would not just manage data, but foster genuine relationships and community growth.
               </p>
               <p className="text-xl text-gray-300 leading-relaxed">
-                Today, we serve hundreds of institutions worldwide, helping them unlock the potential of their alumni networks 
-                through innovative technology and thoughtful design.
+                Today, we're building this vision into reality, creating innovative technology and thoughtful design 
+                to help institutions unlock the potential of their alumni networks.
               </p>
             </div>
           </div>
@@ -278,68 +315,166 @@ const About = () => {
           </div>
         </div>
 
-        {/* Team Section */}
-        <div className="mb-16">
+        {/* Development Team Section */}
+        <div className="mb-20">
           <div className="text-center mb-16">
-            <h3 className="text-4xl font-bold text-gray-900 mb-6">Meet Our Team</h3>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Passionate professionals dedicated to revolutionizing alumni engagement through innovation and expertise
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+              <Users className="w-4 h-4" />
+              Development Team
+            </div>
+            <h3 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent mb-6 leading-tight py-2">
+              Meet the Builders
+            </h3>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Talented developers and designers who brought Alumni Nexus to life with passion, creativity, and technical excellence
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {team.map((member, index) => (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {developmentTeam.map((member, index) => (
               <div
                 key={member.name}
-                className={`group bg-white rounded-3xl p-8 shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-500 hover:scale-105 ${
+                className={`group bg-white rounded-3xl p-8 shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-500 hover:scale-105 relative overflow-hidden ${
                   isVisible ? 'animate-fade-in-up' : ''
                 }`}
-                style={{ animationDelay: `${index * 200}ms` }}
+                style={{ animationDelay: `${index * 150}ms` }}
               >
-                <div className="relative mb-6">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-24 h-24 rounded-2xl mx-auto object-cover ring-4 ring-blue-100 group-hover:ring-blue-200 transition-all"
-                  />
-                  <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-r from-green-400 to-green-500 rounded-full border-4 border-white"></div>
+                {/* Gradient Background */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${member.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}></div>
+                
+                <div className="relative">
+                  <div className="relative mb-6">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-32 h-32 rounded-3xl mx-auto object-cover ring-4 ring-gray-100 group-hover:ring-blue-200 transition-all duration-500 group-hover:scale-105"
+                    />
+                    <div className={`absolute -bottom-3 -right-3 w-10 h-10 bg-gradient-to-r ${member.color} rounded-full border-4 border-white shadow-lg flex items-center justify-center`}>
+                      <Star className="w-5 h-5 text-white" />
+                    </div>
+                  </div>
+
+                  <div className="text-center mb-6">
+                    <h4 className="text-2xl font-bold text-gray-900 mb-2">{member.name}</h4>
+                    <p className="text-lg font-semibold bg-white px-3 py-1 rounded-lg text-gray-700 mb-4 inline-block">
+                      {member.role}
+                    </p>
+                    <p className="text-gray-600 leading-relaxed mb-4">{member.bio}</p>
+                    
+                    {/* Expertise Tags */}
+                    <div className="flex flex-wrap gap-2 justify-center mb-4">
+                      {member.expertise.map((skill, skillIndex) => (
+                        <span
+                          key={skillIndex}
+                          className="px-3 py-1 bg-white text-gray-700 text-xs font-medium rounded-full border border-gray-200 shadow-sm"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="flex justify-center gap-4 pt-4 border-t border-gray-100">
+                    <a 
+                      href={member.social.linkedin} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="p-3 rounded-xl bg-blue-50 text-blue-600 hover:bg-blue-100 transition-all duration-300 hover:scale-110"
+                    >
+                      <Linkedin className="w-5 h-5" />
+                    </a>
+                    <a 
+                      href={`mailto:${member.social.email}`} 
+                      className="p-3 rounded-xl bg-gray-50 text-gray-600 hover:bg-gray-100 transition-all duration-300 hover:scale-110"
+                    >
+                      <Mail className="w-5 h-5" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Mentors Section */}
+        <div className="mb-20">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-800 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+              <Sparkles className="w-4 h-4" />
+              Expert Mentors
+            </div>
+            <h3 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-900 via-purple-900 to-pink-900 bg-clip-text text-transparent mb-6 leading-tight py-2">
+              Guided by Excellence
+            </h3>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Industry experts and academic professionals providing strategic guidance and mentorship to ensure our success
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {mentors.map((mentor, index) => (
+              <div
+                key={mentor.name}
+                className={`group bg-gradient-to-br from-white to-gray-50 rounded-3xl p-8 shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-500 hover:scale-105 relative overflow-hidden ${
+                  isVisible ? 'animate-fade-in-up' : ''
+                }`}
+                style={{ animationDelay: `${(index + 5) * 200}ms` }}
+              >
+                {/* Mentor Badge */}
+                <div className={`absolute top-4 right-4 w-12 h-12 bg-gradient-to-r ${mentor.color} rounded-full flex items-center justify-center shadow-lg`}>
+                  <Award className="w-6 h-6 text-white" />
                 </div>
 
-                <div className="text-center mb-6">
-                  <h4 className="text-xl font-bold text-gray-900 mb-1">{member.name}</h4>
-                  <p className="text-blue-600 font-semibold mb-3">{member.role}</p>
-                  <p className="text-gray-600 text-sm leading-relaxed mb-4">{member.bio}</p>
-                </div>
+                <div className="relative">
+                  <div className="flex items-start gap-6 mb-6">
+                    <div className="relative">
+                      <img
+                        src={mentor.image}
+                        alt={mentor.name}
+                        className="w-24 h-24 rounded-2xl object-cover ring-4 ring-white shadow-lg group-hover:scale-105 transition-all duration-500"
+                      />
+                      <div className={`absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-r ${mentor.color} rounded-full border-4 border-white shadow-lg flex items-center justify-center`}>
+                        <Heart className="w-4 h-4 text-white" />
+                      </div>
+                    </div>
+                    
+                    <div className="flex-1">
+                      <h4 className="text-2xl font-bold text-gray-900 mb-2">{mentor.name}</h4>
+                      <p className="text-lg font-semibold bg-white px-3 py-1 rounded-lg text-gray-700 mb-3 inline-block">
+                        {mentor.role}
+                      </p>
+                      <p className="text-gray-600 leading-relaxed mb-4">{mentor.bio}</p>
+                    </div>
+                  </div>
 
-                <div className="mb-6">
-                  <div className="flex flex-wrap gap-2 justify-center">
-                    {member.expertise.map((skill) => (
-                      <span key={skill} className="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">
+                  {/* Expertise Tags */}
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {mentor.expertise.map((skill, skillIndex) => (
+                      <span
+                        key={skillIndex}
+                        className="px-3 py-1 bg-white text-gray-700 text-sm font-medium rounded-full border border-gray-200 shadow-sm"
+                      >
                         {skill}
                       </span>
                     ))}
                   </div>
-                </div>
 
-                <div className="mb-6">
-                  {member.achievements.map((achievement) => (
-                    <div key={achievement} className="flex items-center gap-2 text-sm text-gray-600 mb-1">
-                      <Award className="w-4 h-4 text-yellow-500" />
-                      {achievement}
-                    </div>
-                  ))}
-                </div>
-
-                <div className="flex justify-center gap-4 pt-4 border-t border-gray-100">
-                  <a href={member.social.linkedin} className="p-2 rounded-lg bg-blue-100 text-blue-600 hover:bg-blue-200 transition-colors">
-                    <Linkedin className="w-4 h-4" />
-                  </a>
-                  <a href={member.social.twitter} className="p-2 rounded-lg bg-blue-100 text-blue-600 hover:bg-blue-200 transition-colors">
-                    <Twitter className="w-4 h-4" />
-                  </a>
-                  <a href={`mailto:${member.social.email}`} className="p-2 rounded-lg bg-blue-100 text-blue-600 hover:bg-blue-200 transition-colors">
-                    <Mail className="w-4 h-4" />
-                  </a>
+                  <div className="flex justify-center gap-4 pt-4 border-t border-gray-200">
+                    <a 
+                      href={mentor.social.linkedin} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="p-3 rounded-xl bg-blue-50 text-blue-600 hover:bg-blue-100 transition-all duration-300 hover:scale-110"
+                    >
+                      <Linkedin className="w-5 h-5" />
+                    </a>
+                    <a 
+                      href={`mailto:${mentor.social.email}`} 
+                      className="p-3 rounded-xl bg-gray-50 text-gray-600 hover:bg-gray-100 transition-all duration-300 hover:scale-110"
+                    >
+                      <Mail className="w-5 h-5" />
+                    </a>
+                  </div>
                 </div>
               </div>
             ))}
@@ -354,13 +489,16 @@ const About = () => {
             <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
               Ready to transform your alumni engagement? Let's build the future of educational communities together.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-blue-600 px-8 py-4 rounded-2xl font-semibold hover:bg-gray-100 transition-colors shadow-lg flex items-center justify-center gap-2 group">
+            <div className="flex justify-center">
+              <button 
+                onClick={() => {
+                  const event = new CustomEvent('open-guided-demo');
+                  window.dispatchEvent(event);
+                }}
+                className="bg-white text-blue-600 px-8 py-4 rounded-2xl font-semibold hover:bg-gray-100 transition-colors shadow-lg flex items-center justify-center gap-2 group"
+              >
                 Get Started Today
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
-              <button className="border-2 border-white text-white px-8 py-4 rounded-2xl font-semibold hover:bg-white hover:text-blue-600 transition-colors">
-                Contact Our Team
               </button>
             </div>
           </div>
