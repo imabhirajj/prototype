@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Play, Sparkles, Users, TrendingUp, Globe } from 'lucide-react';
+import DemoPreview from './DemoPreview';
 
 const Hero = () => {
   const [isHovered, setIsHovered] = useState(false);
+  const [showDemoPreview, setShowDemoPreview] = useState(false);
 
   const floatingIcons = [
     { Icon: Users, delay: 0, x: 100, y: 50 },
@@ -34,7 +36,8 @@ const Hero = () => {
           style={{ left: '3%', top: '25%', background: 'radial-gradient(circle, rgba(99,102,241,0.6) 0%, rgba(99,102,241,0) 70%)' }}
           animate={{ y: [0, -12, 0] }}
           transition={{ duration: 8, repeat: Infinity }}
-          aria-hidden
+          aria-hidden="true"
+          role="presentation"
         />
         <motion.div
           className="absolute w-48 h-48 rounded-full blur-3xl opacity-40"
@@ -132,7 +135,7 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
         >
           <motion.h1 
-            className="text-3xl sm:text-5xl lg:text-7xl font-bold text-gray-900 leading-[1.25] sm:leading-[1.2] lg:leading-[1.15] overflow-visible"
+            className="text-4xl sm:text-5xl lg:text-7xl font-bold text-gray-900 leading-[1.2] sm:leading-[1.2] lg:leading-[1.15] overflow-visible"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.3 }}
@@ -167,7 +170,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.9 }}
           >
             <motion.button 
-              className="group relative bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-base sm:text-lg font-semibold overflow-hidden"
+              className="group relative bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-xl text-lg font-semibold overflow-hidden w-full sm:w-auto focus:outline-none focus:ring-4 focus:ring-blue-300"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.98 }}
               onHoverStart={() => setIsHovered(true)}
@@ -176,6 +179,7 @@ const Hero = () => {
                 const event = new CustomEvent('open-guided-demo');
                 window.dispatchEvent(event);
               }}
+              aria-label="Start guided demo of Alumni Nexus platform"
             >
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600"
@@ -200,6 +204,19 @@ const Hero = () => {
                 whileTap={{ scale: 4, opacity: 0 }}
                 transition={{ duration: 0.4 }}
               />
+            </motion.button>
+
+            <motion.button 
+              className="group relative border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-xl text-lg font-semibold overflow-hidden w-full sm:w-auto hover:bg-blue-600 hover:text-white transition-colors focus:outline-none focus:ring-4 focus:ring-blue-300"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => setShowDemoPreview(true)}
+              aria-label="Watch demo video of Alumni Nexus platform"
+            >
+              <span className="relative z-10 flex items-center justify-center">
+                <Play className="mr-2 h-5 w-5" />
+                Watch Demo
+              </span>
             </motion.button>
           </motion.div>
         </motion.div>
@@ -237,6 +254,8 @@ const Hero = () => {
         </motion.div>
       </div>
 
+      {/* Demo Preview Modal */}
+      <DemoPreview isOpen={showDemoPreview} onClose={() => setShowDemoPreview(false)} />
     </section>
   );
 };

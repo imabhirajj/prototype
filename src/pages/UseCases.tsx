@@ -4,16 +4,48 @@ import { useState, useEffect } from 'react';
 import { 
   Building, GraduationCap, Users, Briefcase, ArrowRight, 
   TrendingUp, Heart, Lightbulb, Target, Star,
-  Sparkles, Award, Network, Rocket
+  Sparkles, Award, Network, Rocket, X, Calendar,
+  CheckCircle, Zap
 } from 'lucide-react';
 
 const UseCases = () => {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedUseCase, setSelectedUseCase] = useState<string | null>(null);
+  const [demoForm, setDemoForm] = useState({
+    name: '',
+    email: '',
+    institution: '',
+    role: '',
+    message: '',
+    useCase: ''
+  });
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
+
+  const handleDemoClick = (useCaseId: string) => {
+    setSelectedUseCase(useCaseId);
+    setDemoForm(prev => ({ ...prev, useCase: useCaseId }));
+    setShowModal(true);
+  };
+
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitted(true);
+    setTimeout(() => {
+      setShowModal(false);
+      setIsSubmitted(false);
+      setDemoForm({ name: '', email: '', institution: '', role: '', message: '', useCase: '' });
+    }, 3000);
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setDemoForm({ ...demoForm, [e.target.name]: e.target.value });
+  };
 
   const useCases = [
     {
@@ -295,7 +327,10 @@ const UseCases = () => {
                 </div>
 
                 {/* CTA */}
-                <button className={`w-full bg-gradient-to-r ${useCase.gradient} text-white px-6 py-4 rounded-2xl font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105 flex items-center justify-center gap-2 group`}>
+                <button 
+                  onClick={() => handleDemoClick(useCase.id)}
+                  className={`w-full bg-gradient-to-r ${useCase.gradient} text-white px-6 py-4 rounded-2xl font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105 flex items-center justify-center gap-2 group`}
+                >
                   {useCase.cta}
                   <CtaIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
@@ -322,6 +357,147 @@ const UseCases = () => {
           </div>
         </div>
       </div>
+
+      {/* Demo Booking Modal */}
+      {showModal && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+            {isSubmitted ? (
+              <div className="p-12 text-center">
+                <div className="w-20 h-20 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <CheckCircle className="w-10 h-10 text-white" />
+                </div>
+                <h3 className="text-3xl font-bold text-gray-900 mb-4">Demo Requested!</h3>
+                <p className="text-gray-600 mb-6">
+                  Thank you for your interest! Our team will contact you within 24 hours to schedule your personalized demo.
+                </p>
+                <div className="flex items-center justify-center gap-2 text-blue-600">
+                  <Zap className="w-5 h-5" />
+                  <span className="font-semibold">You'll receive a confirmation email shortly</span>
+                </div>
+              </div>
+            ) : (
+              <>
+                <div className="flex items-center justify-between p-8 border-b border-gray-200">
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-900">Schedule Your Demo</h3>
+                    <p className="text-gray-600 mt-1">
+                      {selectedUseCase && useCases.find(uc => uc.id === selectedUseCase)?.title} - Let's show you how Alumni Nexus can transform your network
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => setShowModal(false)}
+                    className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                  >
+                    <X className="w-6 h-6 text-gray-500" />
+                  </button>
+                </div>
+
+                <div className="p-8">
+                  <form onSubmit={handleFormSubmit} className="space-y-6">
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                          Full Name *
+                        </label>
+                        <input
+                          type="text"
+                          name="name"
+                          value={demoForm.name}
+                          onChange={handleInputChange}
+                          required
+                          className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                          placeholder="Enter your full name"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                          Email Address *
+                        </label>
+                        <input
+                          type="email"
+                          name="email"
+                          value={demoForm.email}
+                          onChange={handleInputChange}
+                          required
+                          className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                          placeholder="Enter your email address"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                          Institution Name *
+                        </label>
+                        <input
+                          type="text"
+                          name="institution"
+                          value={demoForm.institution}
+                          onChange={handleInputChange}
+                          required
+                          className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                          placeholder="Your university or college"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                          Your Role *
+                        </label>
+                        <input
+                          type="text"
+                          name="role"
+                          value={demoForm.role}
+                          onChange={handleInputChange}
+                          required
+                          className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                          placeholder="e.g., Alumni Relations Director"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        Tell us about your current challenges *
+                      </label>
+                      <textarea
+                        name="message"
+                        value={demoForm.message}
+                        onChange={handleInputChange}
+                        required
+                        rows={4}
+                        className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
+                        placeholder="What specific alumni management challenges are you facing? How can we help?"
+                      />
+                    </div>
+
+                    <div className="bg-blue-50 rounded-xl p-4">
+                      <div className="flex items-center gap-3">
+                        <Calendar className="w-5 h-5 text-blue-600" />
+                        <div>
+                          <p className="font-semibold text-blue-900">What happens next?</p>
+                          <p className="text-sm text-blue-700">
+                            We'll contact you within 24 hours to schedule a 30-minute personalized demo tailored to your specific needs.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-4 px-6 rounded-xl font-semibold text-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2 group"
+                    >
+                      Request Demo
+                      <Calendar className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    </button>
+                  </form>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
 
       <style>{`
         @keyframes fade-in-up {
