@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AlumniNexus – SIH Presentation One‑Pager</title>
+    <style>
+      :root {
+        --text: #0f172a;
+        --muted: #475569;
+        --accent: #2563eb;
+        --border: #e2e8f0;
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; }
+      body {
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        color: var(--text);
+        line-height: 1.5;
+        background: #fff;
+      }
+      .page {
+        max-width: 900px;
+        margin: 32px auto;
+        padding: 32px;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+      }
+      header h1 { margin: 0 0 4px; font-size: 28px; }
+      header p { margin: 0; color: var(--muted); }
+      h2 { margin: 24px 0 8px; font-size: 18px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+      ul { margin: 8px 0 0 20px; }
+      li { margin: 4px 0; }
+      .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      .small { color: var(--muted); font-size: 12px; }
+      .tag { display: inline-block; padding: 2px 8px; border: 1px solid var(--border); border-radius: 999px; margin-right: 6px; margin-top: 6px; font-size: 12px; }
+      .pill { display: inline-block; padding: 2px 8px; background: #eff6ff; color: var(--accent); border-radius: 999px; margin-right: 6px; margin-top: 6px; font-size: 12px; border: 1px solid #dbeafe; }
+      .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+      .card { border: 1px solid var(--border); border-radius: 10px; padding: 12px; }
+      @media print {
+        body { background: #fff; }
+        .page { border: none; margin: 0; padding: 12mm; }
+        a { color: inherit; text-decoration: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <h1>AlumniNexus – Smart Alumni Engagement Platform</h1>
+        <p class="small">SIH Hackathon | Demo flow: Home → Features → Use Cases → Why AlumniNexus → About → Contact</p>
+      </header>
+
+      <section>
+        <h2>Goal</h2>
+        <ul>
+          <li>Connect alumni, students, and institutions for mentorship, networking, and opportunities.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Tech Stack</h2>
+        <div>
+          <span class="pill">React 18</span>
+          <span class="pill">Vite</span>
+          <span class="pill">React Router</span>
+          <span class="pill">Tailwind CSS</span>
+          <span class="pill">Framer Motion</span>
+          <span class="pill">Intersection Observer</span>
+          <span class="pill">Lucide Icons</span>
+          <span class="pill">JavaScript (ESM, JSX)</span>
+        </div>
+      </section>
+
+      <section>
+        <h2>Architecture & Routing</h2>
+        <ul>
+          <li>SPA with client‑side routing via React Router.</li>
+          <li>Routes: <code>/</code>, <code>/features</code>, <code>/use-cases</code>, <code>/why-alumni-nexus</code>, <code>/about</code>, <code>/contact</code>.</li>
+          <li>Atomic components for reusability and maintainability.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Key Components/Pages</h2>
+        <div class="grid-3">
+          <div class="card"><strong>Navbar / Footer / BackToTop</strong><br/><span class="small">Navigation and UX comfort</span></div>
+          <div class="card"><strong>Hero</strong><br/><span class="small">Value proposition and CTA</span></div>
+          <div class="card"><strong>Problem / Solution</strong><br/><span class="small">Pain points and our approach</span></div>
+          <div class="card"><strong>FeatureHighlights</strong><br/><span class="small">Core capabilities overview</span></div>
+          <div class="card"><strong>TransformationShowcase</strong><br/><span class="small">Before → After storytelling (animations)</span></div>
+          <div class="card"><strong>Pages</strong><br/><span class="small">Home, Features, UseCases, WhyAlumniNexus, About, Contact</span></div>
+        </div>
+      </section>
+
+      <section class="two-col">
+        <div>
+          <h2>UI/UX Principles</h2>
+          <ul>
+            <li>Responsive layout with Tailwind.</li>
+            <li>Accessible: skip link, semantic headings, focus styles.</li>
+            <li>Smooth micro‑interactions via Framer Motion.</li>
+            <li>Consistent spacing, typography, and color system.</li>
+          </ul>
+        </div>
+        <div>
+          <h2>Performance</h2>
+          <ul>
+            <li>Vite for fast HMR and optimized builds.</li>
+            <li>CSS tree‑shaking via Tailwind.</li>
+            <li>Code‑splitting ready (React lazy/Suspense possible).</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="two-col">
+        <div>
+          <h2>Accessibility</h2>
+          <ul>
+            <li>Keyboard navigation and focus management.</li>
+            <li>Contrast‑aware design and readable sizes.</li>
+            <li>ARIA‑friendly patterns where relevant.</li>
+          </ul>
+        </div>
+        <div>
+          <h2>Code Quality & Tooling</h2>
+          <ul>
+            <li>ESLint with React and Hooks rules.</li>
+            <li>Scripts: <code>npm run dev</code>, <code>build</code>, <code>preview</code>.</li>
+            <li>PostCSS/Autoprefixer via Tailwind; Browserslist maintained.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Why These Choices</h2>
+        <ul>
+          <li>React + Vite: rapid iteration, modern DX, production‑ready builds.</li>
+          <li>Tailwind: design velocity and consistency.</li>
+          <li>Framer Motion: smooth animations with minimal code.</li>
+          <li>React Router: clean route management and scalability.</li>
+        </ul>
+      </section>
+
+      <section class="two-col">
+        <div>
+          <h2>Future Enhancements</h2>
+          <ul>
+            <li>Auth, role‑based dashboards (alumni/student/admin).</li>
+            <li>Real‑time chat and mentorship bookings.</li>
+            <li>Events, job boards, referral workflows.</li>
+            <li>Analytics and engagement scoring; PWA/offline.</li>
+          </ul>
+        </div>
+        <div>
+          <h2>Risks & Mitigations</h2>
+          <ul>
+            <li>Scalability: modular architecture; API‑first boundaries.</li>
+            <li>SEO (SPA): consider SSR/SSG (e.g., Next.js) if needed.</li>
+            <li>Accessibility: ongoing audits and testing.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Demo Script (2–3 minutes)</h2>
+        <ul>
+          <li>0:00–0:20: Problem statement (alumni engagement gap).</li>
+          <li>0:20–0:50: Hero + key value props.</li>
+          <li>0:50–1:30: Features + TransformationShowcase.</li>
+          <li>1:30–2:10: Use Cases (student, alumni, institute).</li>
+          <li>2:10–2:30: Why AlumniNexus (differentiators).</li>
+          <li>2:30–3:00: Roadmap and closing CTA.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Likely Judge Questions (Answer Cues)</h2>
+        <ul>
+          <li><strong>What problem are you solving?</strong> Fragmented engagement; hard to find mentors, referrals, events.</li>
+          <li><strong>Who are your users?</strong> Students, alumni, T&amp;P cells, institution admins.</li>
+          <li><strong>Core differentiator?</strong> Unified workflows + clean UX + extensible architecture.</li>
+          <li><strong>Why React + Vite + Tailwind?</strong> Speed, maintainability, consistent design system.</li>
+          <li><strong>How will you scale backend?</strong> API‑first, microservices‑ready, caching/pagination, SSR for SEO if needed.</li>
+          <li><strong>How do you ensure accessibility?</strong> Semantic structure, focus states, contrast; audits.</li>
+          <li><strong>Auth/authorization?</strong> OAuth/social login, JWT sessions, RBAC roles.</li>
+          <li><strong>Measure success?</strong> Mentorship matches, bookings, event participation, referral conversions.</li>
+          <li><strong>Monetization?</strong> Institution SaaS plans; premium alumni features; sponsorships.</li>
+          <li><strong>Privacy/security?</strong> Minimal data, TLS, audit logs; compliance roadmap.</li>
+          <li><strong>Deployment plan?</strong> Static hosting (Vercel/Netlify) + managed API (Render/Fly/AWS).</li>
+          <li><strong>Next after hackathon?</strong> MVP backend, pilot with a department, feedback loop.</li>
+        </ul>
+      </section>
+
+      <footer class="small" style="margin-top:16px;">
+        Tip: To export as PDF, open this page and press Ctrl+P (Cmd+P on Mac), then choose “Save as PDF”.
+      </footer>
+    </div>
+  </body>
+  </html>
+
+
